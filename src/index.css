@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 0 0% 11%;
+    --border: 0 0% 89%;
+  }
+
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 0 0% 95%;
+    --border: 0 0% 20%;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+    @apply antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1 {
+    @apply text-h1 mb-6 text-text-light dark:text-text-dark tracking-tight;
+  }
+
+  h2 {
+    @apply text-h2 mb-4 text-text-light dark:text-text-dark tracking-tight;
+  }
+
+  h3 {
+    @apply text-h3 mb-3 text-text-light dark:text-text-dark tracking-tight;
+  }
+
+  p {
+    @apply text-base leading-relaxed mb-4;
+  }
+
+  /* Improve focus styles for better accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-coral-500 ring-offset-2;
+  }
+
+  /* Smooth transitions for theme changes */
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  /* Disable transitions when user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      @apply transition-none !important;
+    }
+  }
+
+  /* Container responsive padding */
+  .container {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  /* Skip link styles */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 
+           focus:px-4 focus:py-2 focus:bg-background-light dark:focus:bg-background-dark 
+           focus:text-coral-500 focus:rounded-md focus:shadow-lg focus:ring-2 focus:ring-coral-500;
+  }
+}
+
+@layer components {
+  /* Navigation button styles - Optimized for performance */
+  .nav-button {
+    @apply relative text-text-light dark:text-text-dark hover:text-coral-500
+           transition-colors duration-200 ease-out
+           before:absolute before:inset-0 before:bg-gradient-to-r
+           before:from-coral-500/0 before:to-teal-500/0
+           before:opacity-0 before:transition-opacity before:duration-200
+           hover:before:opacity-10
+           will-change-auto;
+  }
+
+  /* New cleaning card styles - Optimized for performance */
+  .new-cleaning-card {
+    @apply relative overflow-hidden bg-coral-500 hover:bg-coral-hover
+           rounded-lg shadow-lg 
+           transition-[transform,box-shadow] duration-200 ease-out
+           hover:shadow-xl hover:translate-y-[-2px]
+           before:absolute before:inset-0 before:bg-mesh-pattern
+           before:opacity-[0.1] before:transition-opacity before:duration-200
+           hover:before:opacity-[0.15]
+           after:absolute after:inset-0 after:bg-gradient-to-br
+           after:from-coral-400/30 after:to-teal-500/30
+           after:opacity-0 after:transition-opacity after:duration-200
+           hover:after:opacity-100
+           focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-coral-500 focus-visible:ring-offset-2
+           will-change-transform;
+  }
+
+  /* Page transition styles - Optimized for performance */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+    will-change: opacity, transform;
+  }
+
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+    will-change: opacity, transform;
+  }
+}
+
+@layer utilities {
+  .bg-mesh-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-mesh-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+  }
+
+  /* Optimized gradient mesh with reduced complexity */
+  .gradient-mesh {
+    @apply pointer-events-none opacity-20 dark:opacity-10;
+    background: 
+      radial-gradient(circle at 0% 0%, theme(colors.coral.500 / 20%), transparent 40%),
+      radial-gradient(circle at 100% 100%, theme(colors.teal.500 / 20%), transparent 40%);
+    will-change: opacity;
+  }
+
+  .header-gradient {
+    @apply absolute inset-0 bg-gradient-to-r from-coral-500/5 to-teal-500/5;
+    will-change: opacity;
+  }
+
+  .header-mesh {
+    @apply absolute inset-0 bg-mesh-pattern opacity-[0.02] dark:opacity-[0.03];
+    will-change: opacity;
+  }
+
+  /* Enhanced animation utilities */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Add smooth transitions for interactive elements */
+  .transition-interactive {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

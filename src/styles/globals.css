@@ -1,0 +1,34 @@
+/* Import this file in your main.tsx or App.tsx */
+
+/* Faster text color transitions */
+* {
+  transition: color 100ms ease-out, background-color 200ms ease-out, border-color 200ms ease-out;
+}
+
+/* Disable transitions when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Plus/Minus indicator for accordions */
+div[data-state='open'] .PlusMinus::before {
+  content: '-';
+  color: var(--plus-minus-color, #F2994A);
+}
+
+div[data-state='closed'] .PlusMinus::before {
+  content: '+';
+  color: var(--plus-minus-color, #00BFA5);
+}
+
+/* Dark mode uses teal as primary */
+.dark {
+  --plus-minus-color: #00BFA5;
+}
+
+/* Light mode uses coral as primary */
+:root {
+  --plus-minus-color: #F2994A;
+}

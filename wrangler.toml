@@ -1,0 +1,11 @@
+[build]
+command = "npm run build"
+dist = "dist"
+base = "/"
+
+[build.environment]
+NODE_VERSION = "20"
+
+[site]
+bucket = "./dist"
+entry-point = "dist/index.html"
